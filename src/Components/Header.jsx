@@ -1,11 +1,10 @@
 import React from "react";
 
-
 const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src="https://res.cloudinary.com/krishnamohan479/image/upload/v1736535011/foodapp-removebg_twvwgv.png" alt="Logo" />
+        <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png" alt="Logo" />
       </div>
       <div className="nav-items">
         <ul>
