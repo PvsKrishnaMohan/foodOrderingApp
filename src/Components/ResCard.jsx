@@ -1,5 +1,5 @@
 import React from "react";
-
+import {CDN_URL} from '../Utils/Constants'
 // const resData = {
 //   card: {
 //     card: {
@@ -124,7 +124,7 @@ const ResCard = (props) => {
     <div className="res-card">
       <img
         className="foodMenuCard"
-        src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_324,c_fill/"+resData?.card?.card?.info.cloudinaryImageId}
+        src={CDN_URL+resData?.card?.card?.info.cloudinaryImageId}
       />
       <h4>{name}</h4>
       <h5>{costForTwo}</h5>

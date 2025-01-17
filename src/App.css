@@ -57,3 +57,9 @@ align-items: center; */
 .foodMenuCard {
   width:100%;
 }
+
+.filter-btn {
+  /* padding: 10px; */
+  margin:10px;
+  cursor: pointer;
+}

@@ -1,10 +1,11 @@
 import React from "react";
+import  LOGO_URL  from "../Utils/Constants";
 
 const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png" alt="Logo" />
+        <img className="logo" src={LOGO_URL} alt="Logo" />
       </div>
       <div className="nav-items">
         <ul>
