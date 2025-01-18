@@ -1,5 +1,5 @@
 import React from "react";
-import {CDN_URL} from '../Utils/Constants'
+import {CLOUDINARY_URL} from '../Utils/Constants'
 // const resData = {
 //   card: {
 //     card: {
@@ -119,12 +119,13 @@ import {CDN_URL} from '../Utils/Constants'
 
 const ResCard = (props) => {
   const { resData } = props;
-  const {name, costForTwo, cuisines, avgRating, sla} = resData?.card?.card?.info
+  console.log(resData,"rd")
+  const {name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId} = resData
   return (
     <div className="res-card">
       <img
         className="foodMenuCard"
-        src={CDN_URL+resData?.card?.card?.info.cloudinaryImageId}
+        src={CLOUDINARY_URL+cloudinaryImageId}
       />
       <h4>{name}</h4>
       <h5>{costForTwo}</h5>
