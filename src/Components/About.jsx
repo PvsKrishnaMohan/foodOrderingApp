@@ -1,8 +1,14 @@
 import React from 'react'
+import UserCard from './UserCard'
+import UserClassCard from './UserClassCard'
+
 
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <UserCard name={"Krishna Mohan"} location = "AndhraPradesh" gender="male"/>
+      <UserClassCard name={"Krishna Mohan"} location = "AndhraPradesh" gender="male"/>
+    </div>
   )
 }
 

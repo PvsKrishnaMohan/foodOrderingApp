@@ -161,3 +161,12 @@
   font-size: 13px;
 
 }
+
+.userCard{
+  width:400px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
