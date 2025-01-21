@@ -122,16 +122,20 @@ const ResCard = (props) => {
 //   console.log(resData,"rd")
   const {name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId} = resData
   return (
-    <div className="res-card">
+    <div className="w-[250px] p-5 bg-slate-200 rounded-lg m-3 hover:bg-yellow-50">
       <img
-        className="foodMenuCard"
+        className="rounded-lg mb-3"
         src={CLOUDINARY_URL+cloudinaryImageId}
       />
-      <h4>{name}</h4>
-      <h5>{costForTwo}</h5>
-      <h6>{cuisines.join(", ")}</h6>
-      <h6>{avgRating} stars</h6>
-      <h6>{sla.slaString}</h6>
+      <div className="flex justify-between my-1">
+      <h4 className="font-bold ">{name}</h4>
+      <h6 className="bg-orange-100 p-1 rounder-xl">{costForTwo}</h6>
+      </div>
+      <h6 className="">{cuisines.join(", ")}</h6>
+      <div className="flex justify-between my-1">
+      <h6 className="bg-yellow-100 p-1 rounded-lg">{avgRating} stars</h6>
+      <h6 className="bg-lime-200 rounded-lg p-1">{sla.slaString}</h6>
+      </div>
     </div>
   );
 };

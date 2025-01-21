@@ -32,7 +32,7 @@ export const Body = () => {
   }, []);
 
   const checkOnlineStatus = useOnlineStatus();
-  console.log(checkOnlineStatus, "oo");
+
   if (checkOnlineStatus === false) {
     return (
       <h1>Looks like you are offline! Please check your internet connection</h1>
@@ -43,14 +43,16 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <div className="body-component">
-      <div className="filter-cont">
+      <div className="filter-cont m-4 flex items-center">
         <div className="search-container">
           <input
             type="text"
+            className="border-solid border p-2 ml-3 rounded text-black-50	border-yellow-800 focus:outline-none "
             value={inputValue}
+            placeholder="Search Restaurant"
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <button
+          <button className="px-4 py-2 border-solid border p-2 ml-2 rounded text-black-50 bg-green-300"
             onClick={() => {
               const searchRes = restauantList.filter((res) =>
                 res.info.name.toLowerCase().includes(inputValue.toLowerCase())
@@ -63,7 +65,7 @@ export const Body = () => {
         </div>
 
         <button
-          className="filter-btn"
+          className="border-solid filter-btn border p-2 ml-3 rounded text-slate-50  bg-yellow-500"
           onClick={() => {
             const filteredResList = restauantList.filter(
               (res) => res.info.avgRating > 4.3
@@ -75,7 +77,7 @@ export const Body = () => {
         </button>
       </div>
 
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center">
         {filteredRes.map((res) => (
           <Link to={"/restaurants/" + res?.info.id} key={res?.info.id}>
             <ResCard resData={res.info} />
