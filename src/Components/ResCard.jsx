@@ -119,7 +119,7 @@ import {CLOUDINARY_URL} from '../Utils/Constants'
 
 const ResCard = (props) => {
   const { resData } = props;
-  console.log(resData,"rd")
+//   console.log(resData,"rd")
   const {name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId} = resData
   return (
     <div className="res-card">

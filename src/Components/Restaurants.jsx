@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { CLOUDINARY_URL, HOTEL_URL } from "../Utils/Constants";
 import Shimmer from "./Shimmer";
-import { SWIGGY_IMG_BASE_URL } from "../Utils/Constants";
-import { ResMenuItemsList } from "../Utils/mockData";
 import { useParams } from "react-router-dom";
 
+import { SWIGGY_IMG_BASE_URL } from "../Utils/Constants";
+import { ResMenuItemsList } from "../Utils/mockData";
+import useRestaurantsMenu from "../Utils/useRestaurantsList";
+
 const Restaurants = () => {
-  const [resInfo, setResInfo] = useState([]);
-  const {resId} = useParams();
-
-  const fetchHotelUrl = async () => {
-    const dataFetched = await fetch(HOTEL_URL+resId);
-    const data = await dataFetched.json();
-    // console.log(data, "rrr");
-    setResInfo(data);
-  };
-
-  useEffect(() => {
-    fetchHotelUrl();
-  }, []);
-
+  const {resId} = useParams();  
+  const resInfo = useRestaurantsMenu(resId);
+  console.log(resInfo,"ri")
   const {
     name,
     cuisines,
