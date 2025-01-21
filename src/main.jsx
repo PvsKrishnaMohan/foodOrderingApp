@@ -1,40 +1,49 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
-import ErrorPage from "./Components/ErrorPage"
-import About from "./Components/About"
-import Contact from "./Components/Contact"
+import ErrorPage from "./Components/ErrorPage";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
 import Body from "./Components/Body.jsx";
 import Restaurants from "./Components/Restaurants.jsx";
+// import Grocery from "./Components/Grocery.jsx";
 
+const Grocery = lazy(() => import("./Components/Grocery.jsx"));
 export const appRouter = createBrowserRouter([
   {
-    path: '/',
-    element: <App/>,
-    children:[
+    path: "/",
+    element: <App />,
+    children: [
       {
-        path: '/',
-        element: <Body/>
+        path: "/",
+        element: <Body />,
       },
       {
-        path: '/about',
-        element: <About/>
+        path: "/about",
+        element: <About />,
       },
       {
-        path: '/contact',
-        element: <Contact/>
+        path: "/contact",
+        element: <Contact />,
       },
       {
-        path: '/restaurants/:resId',
-        element: <Restaurants/>
-      }
+        path: "/restaurants/:resId",
+        element: <Restaurants />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading ...</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
+      },
     ],
-    errorElement: <ErrorPage/>
+    errorElement: <ErrorPage />,
   },
-  
-])
+]);
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={appRouter}>
