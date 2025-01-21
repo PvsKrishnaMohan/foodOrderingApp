@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ResCard from "./ResCard";
-import {resList} from "../Utils/mockData";
+import { resList } from "../Utils/mockData";
 import Shimmer from "./Shimmer";
 import { API_URL } from "../Utils/Constants";
 import { RESTAURANTS_LIST_URL } from "../Utils/Constants";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 export const Body = () => {
   const [restauantList, setRestaurantList] = useState([]);
@@ -29,6 +30,14 @@ export const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const checkOnlineStatus = useOnlineStatus();
+  console.log(checkOnlineStatus, "oo");
+  if (checkOnlineStatus === false) {
+    return (
+      <h1>Looks like you are offline! Please check your internet connection</h1>
+    );
+  }
 
   return restauantList.length === 0 ? (
     <Shimmer />
@@ -68,7 +77,9 @@ export const Body = () => {
 
       <div className="res-container">
         {filteredRes.map((res) => (
-          <Link to = {"/restaurants/"+res?.info.id} key={res?.info.id}><ResCard  resData={res.info} /></Link>
+          <Link to={"/restaurants/" + res?.info.id} key={res?.info.id}>
+            <ResCard resData={res.info} />
+          </Link>
         ))}
       </div>
     </div>

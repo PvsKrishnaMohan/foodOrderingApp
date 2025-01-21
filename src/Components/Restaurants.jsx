@@ -6,11 +6,12 @@ import { useParams } from "react-router-dom";
 import { SWIGGY_IMG_BASE_URL } from "../Utils/Constants";
 import { ResMenuItemsList } from "../Utils/mockData";
 import useRestaurantsMenu from "../Utils/useRestaurantsList";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 const Restaurants = () => {
   const {resId} = useParams();  
   const resInfo = useRestaurantsMenu(resId);
-  console.log(resInfo,"ri")
+
   const {
     name,
     cuisines,
@@ -24,8 +25,9 @@ const Restaurants = () => {
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card?.itemCards 
   //  const {name,id, description}= menuList
-  console.log(menuList, "ml");
 
+ 
+  
   return resInfo.length === 0 || null ? (
     <Shimmer />
   ) : (
