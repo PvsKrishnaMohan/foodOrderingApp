@@ -1,5 +1,5 @@
 import React from "react";
-import {CLOUDINARY_URL} from '../Utils/Constants'
+import { CLOUDINARY_URL } from "../Utils/Constants";
 // const resData = {
 //   card: {
 //     card: {
@@ -119,27 +119,38 @@ import {CLOUDINARY_URL} from '../Utils/Constants'
 
 const ResCard = (props) => {
   const { resData } = props;
-//   console.log(resData,"rd")
-  const {name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId} = resData
+  //   console.log(resData,"rd")
+  const { name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId } =
+    resData;
   return (
     <div className="w-[250px] p-5 bg-slate-200 rounded-lg m-3 hover:bg-yellow-50">
       <img
         className="rounded-lg mb-3"
-        src={CLOUDINARY_URL+cloudinaryImageId}
+        src={CLOUDINARY_URL + cloudinaryImageId}
       />
       <div className="flex justify-between my-1">
-      <h4 className="font-bold ">{name}</h4>
-      <h6 className="bg-orange-100 p-1 rounder-xl">{costForTwo}</h6>
+        <h4 className="font-bold ">{name}</h4>
+        <h6 className="bg-orange-100 p-1 rounder-xl">{costForTwo}</h6>
       </div>
       <h6 className="">{cuisines.join(", ")}</h6>
       <div className="flex justify-between my-1">
-      <h6 className="bg-yellow-100 p-1 rounded-lg">{avgRating} stars</h6>
-      <h6 className="bg-lime-200 rounded-lg p-1">{sla.slaString}</h6>
+        <h6 className="bg-yellow-100 p-1 rounded-lg">{avgRating} stars</h6>
+        <h6 className="bg-lime-200 rounded-lg p-1">{sla.slaString}</h6>
       </div>
     </div>
+
   );
 };
 
+export const LabeledRestaurant = (ResCard) =>{
+  return (props) => {
+    return(
+      <div>
+      <label className="bg-black absolute text-white m-2 p-2 rounded-lg">Open now</label>
+      <ResCard {...props}/>
+      </div>
+    )
+  }
+}
+
 export default ResCard;
-
-

@@ -6,6 +6,7 @@ import { API_URL } from "../Utils/Constants";
 import { RESTAURANTS_LIST_URL } from "../Utils/Constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import { LabeledRestaurant } from "./ResCard";
 
 export const Body = () => {
   const [restauantList, setRestaurantList] = useState([]);
@@ -16,9 +17,11 @@ export const Body = () => {
     try {
       const fetchedData = await fetch(RESTAURANTS_LIST_URL);
       const data = await fetchedData.json();
+      console.log(data,"data")
       const RestaurantList =
         data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
+        console.log(RestaurantList,"rl")
       setRestaurantList(RestaurantList ? RestaurantList : resList);
       setFilteredRest(RestaurantList ? RestaurantList : resList);
     } catch (err) {
@@ -33,6 +36,7 @@ export const Body = () => {
 
   const checkOnlineStatus = useOnlineStatus();
 
+  const LabelRestaurant = LabeledRestaurant(ResCard)
   if (checkOnlineStatus === false) {
     return (
       <h1>Looks like you are offline! Please check your internet connection</h1>
@@ -80,7 +84,8 @@ export const Body = () => {
       <div className="flex flex-wrap justify-center">
         {filteredRes.map((res) => (
           <Link to={"/restaurants/" + res?.info.id} key={res?.info.id}>
-            <ResCard resData={res.info} />
+            {res?.info?.isOpen ? <LabelRestaurant resData = {res.info}/> :
+            <ResCard resData={res.info} />}
           </Link>
         ))}
       </div>
