@@ -13,7 +13,10 @@ export const HOTEL_URL =
 export const RESTAURANTS_LIST_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
-  export const CLOUDINARY_URL =
+export const CLOUDINARY_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
-  export const SWIGGY_IMG_BASE_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
+export const SWIGGY_IMG_BASE_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/";
+export const VEG_LOGO_URL= "https://res.cloudinary.com/krishnamohan479/image/upload/v1737612926/261-2619376_big-image-egg-veg-or-non-veg_oa98ld.png"
+export const NONVEG_LOGO_URL= "https://res.cloudinary.com/krishnamohan479/image/upload/v1737612972/j1ijpx8yuw3ev0rmtwipup22p0a4_kuwrts.png"
