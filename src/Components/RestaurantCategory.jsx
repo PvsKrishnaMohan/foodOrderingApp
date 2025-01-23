@@ -9,7 +9,7 @@ const RestaurantCategory = (props) => {
   };
 
   return (
-    <div className="bg-gray-50 rounded-lg shadow-2xl text-black-50 font-bold w-6/12 m-3 p-3 ">
+    <div className="bg-gray-50 rounded-lg shadow-2xl text-black-50 font-bold w-6/12 m-3 p-3">
       <div className="justify-between flex" onClick={handleClick}>
         <span>
           {data.title} ({data.itemCards.length})

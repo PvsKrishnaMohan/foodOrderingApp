@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import  LOGO_URL  from "../Utils/Constants";
 import{Link} from 'react-router-dom'
 import useOnlineStatus from "../Utils/useOnlineStatus";
+import userContext from "../Utils/UserContext";
 
 const Header = () => {
   const [login, setLogin] = useState(false)
   // useEffect is rendered everytime => if there is no dependency 
   // useEffect is called once => if there is a empty dependency []
   // useEffect is called everytime if dependency changes [login]
+  const {userName} = useContext(userContext);
+  // const {userName} = userNameContext
+
   useEffect(()=>{
-    console.log("useEffect called!")
+    console.log("useEffect called!");
   },[])
   const onlineStatus = useOnlineStatus();
   return (
@@ -25,6 +29,7 @@ const Header = () => {
           <li className="px-4"><Link to = "/contact">Contact Us</Link></li>
           <li className="px-4"><Link to = "/grocery">Grocery</Link></li>
           <li className="px-4">Cart</li>
+          <li className="px-4">{userName}</li>
           <button onClick={()=> setLogin(!login)}>{login? "Login" : "LogOut"}</button>
         </ul>
       </div>

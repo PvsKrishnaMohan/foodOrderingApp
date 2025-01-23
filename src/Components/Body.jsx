@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ResCard from "./ResCard";
 import { resList } from "../Utils/mockData";
 import Shimmer from "./Shimmer";
@@ -7,7 +7,7 @@ import { RESTAURANTS_LIST_URL } from "../Utils/Constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utils/useOnlineStatus";
 import { LabeledRestaurant } from "./ResCard";
-
+import userContext from "../Utils/UserContext";
 export const Body = () => {
   const [restauantList, setRestaurantList] = useState([]);
   const [filteredRes, setFilteredRest] = useState([]);
@@ -17,11 +17,11 @@ export const Body = () => {
     try {
       const fetchedData = await fetch(RESTAURANTS_LIST_URL);
       const data = await fetchedData.json();
-      console.log(data,"data")
+      // console.log(data,"data")
       const RestaurantList =
         data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
-        console.log(RestaurantList,"rl")
+        // console.log(RestaurantList,"rl")
       setRestaurantList(RestaurantList ? RestaurantList : resList);
       setFilteredRest(RestaurantList ? RestaurantList : resList);
     } catch (err) {
@@ -34,6 +34,7 @@ export const Body = () => {
     fetchData();
   }, []);
 
+  const {userName,setUserData} = useContext(userContext);
   const checkOnlineStatus = useOnlineStatus();
 
   const LabelRestaurant = LabeledRestaurant(ResCard)
@@ -79,6 +80,15 @@ export const Body = () => {
         >
           Top Rated Restaurants
         </button>
+
+        <input
+            type="text"
+            className="border-solid border p-2 ml-3 rounded text-black-50	border-yellow-800 focus:outline-none "
+            value={userName}
+            placeholder="change user"
+            onChange={(e) => setUserData(e.target.value)}
+          />
+
       </div>
 
       <div className="flex flex-wrap justify-center">

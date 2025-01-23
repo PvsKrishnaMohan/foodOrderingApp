@@ -66,7 +66,6 @@ const Restaurants = () => {
               data={resCategory?.card?.card}
               showItems = {index === showIndex? true : false}
               setShowIndex = {() => setShowIndex(index)}
-
             />
           );
         })}
