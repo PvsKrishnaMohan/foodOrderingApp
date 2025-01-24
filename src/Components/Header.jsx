@@ -26,9 +26,9 @@ const Header = () => {
           <li className="px-4">Online Status:{onlineStatus ? "🟢" : "🔴"} </li>
           <li className="px-4"><Link to = "/">Home</Link></li>
           <li className="px-4"><Link to = "/about">About Us</Link></li>
-          <li className="px-4"><Link to = "/contact">Contact Us</Link></li>
-          <li className="px-4"><Link to = "/grocery">Grocery</Link></li>
-          <li className="px-4">Cart</li>
+          {/* <li className="px-4"><Link to = "/contact">Contact Us</Link></li> */}
+          {/* <li className="px-4"><Link to = "/grocery">Grocery</Link></li> */}
+          {/* <li className="px-4">Cart</li> */}
           <li className="px-4">{userName}</li>
           <button onClick={()=> setLogin(!login)}>{login? "Login" : "LogOut"}</button>
         </ul>

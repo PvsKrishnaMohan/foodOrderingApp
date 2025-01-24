@@ -85,7 +85,7 @@ export const Body = () => {
             type="text"
             className="border-solid border p-2 ml-3 rounded text-black-50	border-yellow-800 focus:outline-none "
             value={userName}
-            placeholder="change user"
+            placeholder="edit card"
             onChange={(e) => setUserData(e.target.value)}
           />
 

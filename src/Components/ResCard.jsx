@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import { CLOUDINARY_URL } from "../Utils/Constants";
 // const resData = {
 //   card: {
@@ -116,12 +116,14 @@ import { CLOUDINARY_URL } from "../Utils/Constants";
 //     },
 //   },
 // };
-
+import userContext from "../Utils/UserContext";
 const ResCard = (props) => {
   const { resData } = props;
   //   console.log(resData,"rd")
   const { name, costForTwo, cuisines, avgRating, sla, cloudinaryImageId } =
     resData;
+  const {userData, setUserData} = useContext(userContext);
+
   return (
     <div className="w-[250px] p-5 bg-slate-200 rounded-lg m-3 hover:bg-yellow-50">
       <img
@@ -136,6 +138,7 @@ const ResCard = (props) => {
       <div className="flex justify-between my-1">
         <h6 className="bg-yellow-100 p-1 rounded-lg">{avgRating} stars</h6>
         <h6 className="bg-lime-200 rounded-lg p-1">{sla.slaString}</h6>
+        <h1>{userData}</h1>
       </div>
     </div>
 
@@ -148,6 +151,7 @@ export const LabeledRestaurant = (ResCard) =>{
       <div>
       <label className="bg-black absolute text-white m-2 p-2 rounded-lg">Open now</label>
       <ResCard {...props}/>
+      
       </div>
     )
   }
