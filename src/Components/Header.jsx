@@ -12,7 +12,7 @@ const Header = () => {
   const {userName} = useContext(userContext);
   // const {userName} = userNameContext
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("useEffect called!");
   },[])
   const onlineStatus = useOnlineStatus();
