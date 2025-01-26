@@ -5,6 +5,8 @@ import Body from "./Components/Body";
 import {Outlet} from "react-router-dom"
 import userContext from "./Utils/UserContext";
 import { useState, useEffect, useContext } from "react";
+import { Provider } from "react-redux";
+import AppStore from "./Utils/AppStore";
 
 const App = ()  => {
   const [userData, setUserData] = useState();
@@ -16,10 +18,11 @@ const App = ()  => {
   },[])
 
   const {userName} = useContext(userContext)
-  console.log(userName,"kmp")
+
   return (
     <>
       <div className="app">
+        <Provider store={AppStore}>
         <userContext.Provider value={{userName : userName}}>
           <Header/>
           <userContext.Provider value = {{userData, setUserData}}>
@@ -27,6 +30,7 @@ const App = ()  => {
           </userContext.Provider>
         </userContext.Provider>
         {/* <Body/> */}
+        </Provider>
       </div>
     </>
   );

@@ -4,10 +4,18 @@ import {
   VEG_LOGO_URL,
   NONVEG_LOGO_URL,
 } from "../Utils/Constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Utils/CartSlice";
 
 const ItemCards = (props) => {
   const { ItemList } = props;
   console.log(ItemList, "it");
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item))
+  }
   return (
     <div>
       {ItemList.map((item) => {
@@ -47,7 +55,7 @@ const ItemCards = (props) => {
                 alt={item?.card?.info.name}
               />
               <div className="text-center">
-                <button className="rounded shadow-lg m-2 p-2 font-mono text-sm bg-black text-slate-50">
+                <button className="rounded shadow-lg m-2 p-2 font-mono text-sm bg-black text-slate-50" onClick={()=> handleAddItem(item)}>
                   Add +
                 </button>
               </div>
