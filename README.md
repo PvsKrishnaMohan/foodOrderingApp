@@ -11,5 +11,15 @@ Currently, two official plugins are available:
 # Redux
  - create store ( configureStore ) from "@reduxjs/toolkit" ✔️
  - provide the above store to app ✔️
- - create a cart slice in the store
+ - create a cart slice in the store ✔️
   
+# Types of Testing 
+    - Unit Testing
+    - Integration Testing
+    - End-to-End Testing
+
+# Setting up tests in our App
+    - Install React Testing Library
+    - Installed Jest
+    - Installed Babel dependencies
+    - Configure Babel

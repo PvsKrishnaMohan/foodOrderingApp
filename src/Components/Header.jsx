@@ -13,7 +13,7 @@ const Header = () => {
   const { userName } = useContext(userContext);
   // const {userName} = userNameContext
   const userCart = useSelector((store) => store.cart.items);
-  console.log(userCart, "us");
+  // console.log(userCart, "us");
 
   useEffect(() => {
     // console.log("useEffect called!");
