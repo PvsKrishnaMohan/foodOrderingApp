@@ -1,9 +1,10 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext, useEffect, useState, useRef } from "react";
 import { TestContext } from "../Utils/TestContext";
-import { useContext, useEffect, useState } from "react";
 
 const Contact = () => {
   const { setTestData } = useContext(TestContext);
+  const inputRef = useRef(null);
+
   const contObj = {
     name: "Krishna",
     email: "krishna@gmail.com",
@@ -17,18 +18,16 @@ const Contact = () => {
       };
     }
     if (action.type === "DELETE_USER") {
-      // Check if the ID exists before filtering
       const existingUser = state.userData.find(
         (item) => item.id === action.payload
       );
       if (!existingUser) {
         console.error(`User with ID ${action.payload} not found.`);
-        return state; // Return the current state if the user is not found
+        return state;
       }
       const filteredData = state.userData.filter(
         (eachItem) => eachItem.id !== action.payload
       );
-      // console.log(filteredData, "fd");
       return {
         ...state,
         userData: filteredData,
@@ -53,21 +52,18 @@ const Contact = () => {
       };
     }
     if (action.type === "UPDATE_USER") {
-      // debugger
       const newUsers = state.userData.map((eachItem) => {
         if (eachItem.id === action.payload.id) {
           return {
-            id:action.payload.id,
-            name:action.payload.name,
-            email:action.payload.email,
-            username:action.payload.username
+            id: action.payload.id,
+            name: action.payload.name,
+            email: action.payload.email,
+            username: action.payload.username
           }
         } else {
           return eachItem;
         }
-        
       });
-      
       return {
         ...state,
         userData: newUsers
@@ -79,7 +75,7 @@ const Contact = () => {
     userData: [],
     isLoading: false,
     isError: { status: false, msg: " " },
-    isEditing: { status: false, id: "", name: "", email: "", username:"" },
+    isEditing: { status: false, id: "", name: "", email: "", username: "" },
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -89,7 +85,6 @@ const Contact = () => {
     try {
       const Apiurl = await fetch("https://jsonplaceholder.typicode.com/users");
       const data = await Apiurl.json();
-      // console.log(data,"dd");
       dispatch({ type: "UPDATE_USER_DATA", payload: data });
       dispatch({ type: "LOADING", payload: false });
       dispatch({ type: "ERROR", payload: { status: false, msg: "" } });
@@ -104,19 +99,15 @@ const Contact = () => {
     dispatch({ type: "DELETE_USER", payload: id });
   };
 
-  const handleUpdate = (id, name, email,username) => {
-    dispatch({ type: "UPDATE_USER", payload: { id, name, email ,username} });
-    dispatch({type: "EDIT_USER",  payload: {
-      status: false,
-      id: '',
-      name: '',
-      email: '',
-      username:''
-    } })
+  const handleUpdate = (id, name, email, username) => {
+    dispatch({ type: "UPDATE_USER", payload: { id, name, email, username } });
+    dispatch({ type: "EDIT_USER", payload: { status: false, id: '', name: '', email: '', username: '' } });
   };
+
   useEffect(() => {
     fetchUserData();
   }, []);
+
   if (state.isLoading) {
     return (
       <div className="text-4xl text-blue-600 text-center mt-80">loading...</div>
@@ -125,6 +116,7 @@ const Contact = () => {
   if (state.isError.status) {
     return <h1>{state.isError.message}</h1>;
   }
+
   return (
     <>
       <div className="flex flex-col items-center border rounded-3xl shadow-2xl shadow-gray-400 mt-2 p-4 m-52">
@@ -150,6 +142,7 @@ const Contact = () => {
               emailreceived={state.isEditing.email}
               user_Namereceived={state.isEditing.username}
               updateFn={handleUpdate}
+              inputRef={inputRef}
             />
           </div>
         )}
@@ -171,7 +164,7 @@ const Contact = () => {
                 </button>
                 <button
                   className="ml-2 bg-lime-500 p-2 border rounded-xl shadow-2xl mt-2"
-                  onClick={() =>
+                  onClick={() => {
                     dispatch({
                       type: "EDIT_USER",
                       payload: {
@@ -181,8 +174,8 @@ const Contact = () => {
                         email: eachItem.email,
                         username: eachItem.username
                       },
-                    })
-                  }
+                    });
+                  }}
                 >
                   Edit
                 </button>
@@ -195,10 +188,15 @@ const Contact = () => {
   );
 };
 
-const FormContainer = ({ id, nameReceived, emailreceived,user_Namereceived, updateFn }) => {
+const FormContainer = ({ id, nameReceived, emailreceived, user_Namereceived, updateFn, inputRef }) => {
   const [name, setName] = useState(nameReceived || "");
   const [email, setEmail] = useState(emailreceived || "");
   const [username, setUserName] = useState(user_Namereceived || "");
+
+  useEffect(() => {
+    inputRef.current.focus(); // Focus on the input when the form is rendered
+  }, []);
+
   return (
     <div>
       <form>
@@ -207,6 +205,7 @@ const FormContainer = ({ id, nameReceived, emailreceived,user_Namereceived, upda
           value={name}
           id="name"
           name="name"
+          ref={inputRef}
           onChange={(e) => setName(e.target.value)}
           className="border rounded-lg m-2 p-2"
         />
@@ -229,7 +228,7 @@ const FormContainer = ({ id, nameReceived, emailreceived,user_Namereceived, upda
         
         <button
           className="border rounded-lg bg-green-700 p-2 m-2"
-          onClick={(e) =>{ e.preventDefault(); updateFn(id, name, email,username)}}
+          onClick={(e) => { e.preventDefault(); updateFn(id, name, email, username); }}
         >
           Update
         </button>
