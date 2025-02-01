@@ -1,4 +1,10 @@
-import React, { useReducer, useContext, useEffect, useState, useRef } from "react";
+import React, {
+  useReducer,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import { TestContext } from "../Utils/TestContext";
 
 const Contact = () => {
@@ -58,16 +64,16 @@ const Contact = () => {
             id: action.payload.id,
             name: action.payload.name,
             email: action.payload.email,
-            username: action.payload.username
-          }
+            username: action.payload.username,
+          };
         } else {
           return eachItem;
         }
       });
       return {
         ...state,
-        userData: newUsers
-      }
+        userData: newUsers,
+      };
     }
   };
 
@@ -101,7 +107,10 @@ const Contact = () => {
 
   const handleUpdate = (id, name, email, username) => {
     dispatch({ type: "UPDATE_USER", payload: { id, name, email, username } });
-    dispatch({ type: "EDIT_USER", payload: { status: false, id: '', name: '', email: '', username: '' } });
+    dispatch({
+      type: "EDIT_USER",
+      payload: { status: false, id: "", name: "", email: "", username: "" },
+    });
   };
 
   useEffect(() => {
@@ -172,7 +181,7 @@ const Contact = () => {
                         id: eachItem.id,
                         name: eachItem.name,
                         email: eachItem.email,
-                        username: eachItem.username
+                        username: eachItem.username,
                       },
                     });
                   }}
@@ -188,7 +197,14 @@ const Contact = () => {
   );
 };
 
-const FormContainer = ({ id, nameReceived, emailreceived, user_Namereceived, updateFn, inputRef }) => {
+const FormContainer = ({
+  id,
+  nameReceived,
+  emailreceived,
+  user_Namereceived,
+  updateFn,
+  inputRef,
+}) => {
   const [name, setName] = useState(nameReceived || "");
   const [email, setEmail] = useState(emailreceived || "");
   const [username, setUserName] = useState(user_Namereceived || "");
@@ -225,10 +241,13 @@ const FormContainer = ({ id, nameReceived, emailreceived, user_Namereceived, upd
           onChange={(e) => setEmail(e.target.value)}
           className="border rounded-lg m-2 p-2"
         />
-        
+
         <button
           className="border rounded-lg bg-green-700 p-2 m-2"
-          onClick={(e) => { e.preventDefault(); updateFn(id, name, email, username); }}
+          onClick={(e) => {
+            e.preventDefault();
+            updateFn(id, name, email, username);
+          }}
         >
           Update
         </button>
