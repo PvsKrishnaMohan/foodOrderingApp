@@ -1,6 +1,7 @@
 import { Sum } from "../Sum";
 
+
 test('Sum function should calculate the sum of two numbers',()=> {
-    const result = Sum(3,4)
-    expect(result).toBe(7);
+    const result = Sum(5,9)
+    expect(result).toBe(14);
 })
