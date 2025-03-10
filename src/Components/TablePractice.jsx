@@ -19,7 +19,7 @@ const TablePractice = () => {
 
   const handleSort = (clickedKey) => {
     const sameColumn = clickedKey === key;
-    const newDirection = sameColumn? !direction : true
+    const newDirection = sameColumn? !direction : true;
     
     setKey(clickedKey);
     setDirection(newDirection);
@@ -32,7 +32,6 @@ const TablePractice = () => {
     })
     setData(sortedData);
   }
-
   return (
     <div className="flex justify-center mt-10 p-4 border-gray-400 bg-zinc-50">
       {/* {JSON.stringify(userData)} */}
