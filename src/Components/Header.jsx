@@ -52,6 +52,12 @@ const Header = () => {
                 <Link to="/grocery" className="text-gray-700 hover:text-gray-900">Grocery</Link>
               </li>
               <li>
+                <Link to="/table" className="text-gray-700 hover:text-gray-900">Table</Link>
+              </li>
+              <li>
+                <Link to="/practice" className="text-gray-700 hover:text-gray-900">Practice</Link>
+              </li>
+              <li>
                 <Link to="/cart" className="text-gray-700 hover:text-gray-900 font-bold">
                   Cart ({userCart.length})
                 </Link>

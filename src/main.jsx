@@ -10,7 +10,8 @@ import Body from "./Components/Body.jsx";
 import Restaurants from "./Components/Restaurants.jsx";
 import Cart from "./Components/Cart.jsx";
 // import Grocery from "./Components/Grocery.jsx";
-
+import StudentTable from "./Components/table.jsx";
+import TablePractice from "./Components/TablePractice.jsx";
 const Grocery = lazy(() => import("./Components/Grocery.jsx"));
 export const appRouter = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ export const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/table",
+        element: <StudentTable />,
+      },
+      {
+        path: "/practice",
+        element: <TablePractice />,
       },
       {
         path: "/grocery",
