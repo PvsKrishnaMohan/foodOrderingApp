@@ -283,6 +283,12 @@ const StudentTable = () => {
     setData(mySortedData);
   };
 
+  const handleDelete =(employee_id) => {
+    console.log(employee_id);
+    const filteredData = data.filter((item)=> item.employee_id !== employee_id);
+    setData(filteredData);
+  }
+
   return (
     <div className="flex justify-center mt-2">
       <table className="border-collapse border border-gray-400">
@@ -344,6 +350,9 @@ const StudentTable = () => {
             >
               Salary {key === "salary" ? (direction ? "🔽" : "🔼") : ""}
             </th>
+            <th>
+                Action
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -375,6 +384,9 @@ const StudentTable = () => {
                 </td>
                 <td className="border border-gray-400 p-4 text-center">
                   {item.salary}
+                </td>
+                <td className="border border-gray-400 p-4 text-center">
+                    <button onClick={()=> handleDelete(item.employee_id)}>🗑️ Delete</button>
                 </td>
               </tr>
             );
